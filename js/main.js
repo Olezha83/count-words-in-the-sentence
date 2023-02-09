@@ -1,8 +1,6 @@
-const [inputText, checkButton, answer] = [
-  'input_text',
-  'check_button',
-  'answer',
-].map((id) => document.getElementById(id))
+const [form, inputText, answer] = ['form', 'input_text', 'answer'].map((id) =>
+  document.getElementById(id)
+)
 
 function countWords() {
   const spaces = inputText.value.trim().replace(/ {2,}/g, ' ').match(/ /g)
@@ -20,6 +18,8 @@ inputText.addEventListener('focus', (event) => {
   answer.classList.remove('answer_visible')
 })
 
-checkButton.addEventListener('click', () => {
+form.addEventListener('submit', (event) => {
+  event.preventDefault()
+  inputText.blur()
   inputText.value ? countWords() : inputText.classList.add('error')
 })
